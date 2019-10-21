@@ -14,7 +14,7 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:banner="@drawable/ic_banner"
+        android:banner="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -23,8 +23,10 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
             </intent-filter>
         </activity>
 
@@ -32,21 +34,6 @@
             android:configChanges="keyboardHidden"
             android:label="@string/application_name"
             android:theme="@style/Theme.AppCompat">
-            <intent-filter>
-                <category android:name="android.intent.category.LEANBACK_LAUNCHER"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:scheme="content"/>
-                <data android:scheme="asset"/>
-                <data android:scheme="file"/>
-                <data android:host="*"/>
-                <data android:pathPattern=".*\\.exolist\\.json"/>
-            </intent-filter>
         </activity>
 
         <activity android:name="com.streamingnology.drmverify.exoplayer.PlayerActivity"
@@ -54,32 +41,8 @@
             android:launchMode="singleTop"
             android:label="@string/application_name"
             android:theme="@style/PlayerTheme">
-            <intent-filter>
-                <action android:name="com.google.android.exoplayer.demo.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="http"/>
-                <data android:scheme="https"/>
-                <data android:scheme="content"/>
-                <data android:scheme="asset"/>
-                <data android:scheme="file"/>
-            </intent-filter>
-            <intent-filter>
-                <action android:name="com.google.android.exoplayer.demo.action.VIEW_LIST"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
         </activity>
 
-        <service android:name="com.streamingnology.drmverify.exoplayer.DemoDownloadService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.android.exoplayer.downloadService.action.RESTART"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </service>
-
-        <service android:name="com.google.android.exoplayer2.scheduler.PlatformScheduler$PlatformSchedulerService"
-            android:permission="android.permission.BIND_JOB_SERVICE"
-            android:exported="true"/>
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-0143974411186089~5451955272"/>

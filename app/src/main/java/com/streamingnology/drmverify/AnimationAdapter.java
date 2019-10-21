@@ -3,8 +3,10 @@ package com.streamingnology.drmverify;
 import android.media.MediaDrm;
 import android.os.Build;
 import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 
@@ -91,6 +93,8 @@ public class AnimationAdapter extends BaseQuickAdapter<DeviceInfo, BaseViewHolde
             helper.setGone(R.id.hardware_value, false);
             helper.setGone(R.id.sdklevel, false);
             helper.setGone(R.id.sdklevel_value, false);
+            helper.setText(R.id.totestpage, SpannableStringUtils.getBuilder("").append("CLICK HERE TO PLAYBACK TEST STREAMS").setClickSpan(clickableSpan).create());
+            ((TextView) helper.getView(R.id.totestpage)).setMovementMethod(LinkMovementMethod.getInstance());
 
             helper.setText(R.id.vendor_value, item.vendor);
             helper.setGone(R.id.vendor, !item.vendor.isEmpty());

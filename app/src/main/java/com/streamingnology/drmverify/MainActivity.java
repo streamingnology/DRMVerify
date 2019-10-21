@@ -15,25 +15,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.google.android.exoplayer2.DefaultRenderersFactory;
-import com.google.android.exoplayer2.RenderersFactory;
-import com.google.android.exoplayer2.database.DatabaseProvider;
-import com.google.android.exoplayer2.database.ExoDatabaseProvider;
-import com.google.android.exoplayer2.offline.ActionFileUpgradeUtil;
-import com.google.android.exoplayer2.offline.DefaultDownloadIndex;
-import com.google.android.exoplayer2.offline.DefaultDownloaderFactory;
-import com.google.android.exoplayer2.offline.DownloadManager;
-import com.google.android.exoplayer2.offline.DownloaderConstructorHelper;
-import com.google.android.exoplayer2.upstream.DataSource;
-import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
-import com.google.android.exoplayer2.upstream.DefaultHttpDataSourceFactory;
-import com.google.android.exoplayer2.upstream.FileDataSourceFactory;
-import com.google.android.exoplayer2.upstream.HttpDataSource;
-import com.google.android.exoplayer2.upstream.cache.Cache;
-import com.google.android.exoplayer2.upstream.cache.CacheDataSource;
-import com.google.android.exoplayer2.upstream.cache.CacheDataSourceFactory;
-import com.google.android.exoplayer2.upstream.cache.NoOpCacheEvictor;
-import com.google.android.exoplayer2.upstream.cache.SimpleCache;
 import com.google.android.exoplayer2.util.Util;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdLoader;
@@ -47,11 +28,8 @@ import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.android.gms.ads.formats.UnifiedNativeAdView;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
-import com.streamingnology.drmverify.exoplayer.DownloadTracker;
 import com.streamingnology.drmverify.exoplayer.SampleChooserActivity;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Locale;
 
 
@@ -63,22 +41,13 @@ public class MainActivity extends Activity {
     private AnimationAdapter mAnimationAdapter;
     private UnifiedNativeAd nativeAd;
 
-    private static final String DOWNLOAD_ACTION_FILE = "actions";
-    private static final String DOWNLOAD_TRACKER_ACTION_FILE = "tracked_actions";
-    private static final String DOWNLOAD_CONTENT_DIRECTORY = "downloads";
-
     protected String userAgent;
-
-    private DatabaseProvider databaseProvider;
-    private File downloadDirectory;
-    private Cache downloadCache;
-    private DownloadManager downloadManager;
-    private DownloadTracker downloadTracker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Utils.init(this);
         userAgent = Util.getUserAgent(this, "ExoPlayerDemo");
         context = this;
         mRecyclerView = findViewById(R.id.rv_list);
